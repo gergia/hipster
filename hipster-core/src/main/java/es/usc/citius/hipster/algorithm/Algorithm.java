@@ -136,6 +136,22 @@ public abstract class Algorithm<A,S,N extends Node<A,S,N>> implements Iterable<N
         });
     }
 
+    /**
+     * Run the algorithm until one of the goal states is found or no more states are
+     * available.
+     * @return SearchResult with the information of the search
+     */
+    public SearchResult search(final Set<S> setOfGoalStates){
+        return search(new Predicate<N>() {
+            @Override
+            public boolean apply(N n) {
+                if (goalState != null) {
+                    return setOfGoalStates.contains(n.state());
+                }
+                return false;
+            }
+        });
+    }
 
     /**
      * Executes the search algorithm until the predicate condition is
