@@ -145,7 +145,7 @@ public abstract class Algorithm<A,S,N extends Node<A,S,N>> implements Iterable<N
         return search(new Predicate<N>() {
             @Override
             public boolean apply(N n) {
-                if (goalState != null) {
+                if (!setOfGoalStates.isEmpty() || setOfGoalStates != null) {
                     return setOfGoalStates.contains(n.state());
                 }
                 return false;
